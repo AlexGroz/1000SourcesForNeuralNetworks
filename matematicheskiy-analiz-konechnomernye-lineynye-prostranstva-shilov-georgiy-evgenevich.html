@@ -37,8 +37,7 @@
   top: 100%;
   margin-top: .25em;
   max-width: 40vw;
-  width: 150px;           /* фиксированная ширина */
-  aspect-ratio: 1;          /* делает элемент квадратом */
+  width: fit-content;
   white-space: normal;
   font-size: 0.85em;
   z-index: 1;
@@ -47,15 +46,10 @@
   transition: opacity .2s ease;
 
   border: 1px solid #333;
-  border-radius: 0;
-  padding: 6px;
+  border-radius: 0;   /* убирает скругления */
+  padding: 6px 8px;
   background: #fff;
   box-shadow: none;
-
-  /* выравниваем текст внутри квадрата */
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .tooltip:hover::after {
