@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>1000 Sources - Название страницы</title>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="index.html">1000 Sources</a>
@@ -24,12 +24,18 @@
         </div>
     </nav>
 
-    <main class="container mt-4">
-        <!-- СЮДА ВСТАВЛЯЙТЕ УНИКАЛЬНОЕ СОДЕРЖИМОЕ СТРАНИЦЫ -->
+    <main class="flex-shrink-0">
+        <div class="container mt-4">
+            <!-- СЮДА ВСТАВЛЯЙТЕ УНИКАЛЬНОЕ СОДЕРЖИМОЕ СТРАНИЦЫ -->
+            <h1>Пример контента</h1>
+            <p>Даже если контента мало, футер останется внизу.</p>
+        </div>
     </main>
 
-    <footer class="bg-light text-center py-3 mt-5">
-        <p>© 2026 1000 Sources For Neural Network</p>
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container text-center">
+            <p class="mb-0">© 2026 1000 Sources For Neural Network</p>
+        </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
