@@ -32,19 +32,20 @@
 <style>
 .tooltip {
   cursor: help;
-  color: blue;           /* любой текст внутри span будет синим */
+  color: blue;
   margin: 0;
   padding: 0;
   position: relative;
-  display: inline;
+  display: inline-block;
 }
 
 .tooltip::after {
   content: attr(data-tip);
   position: absolute;
-  left: 0;
-  bottom: 100%;
-  margin-bottom: 8px;
+  left: 100%;        /* появляется справа */
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 10px;
   min-width: 150px;
   max-width: 300px;
   width: max-content;
@@ -62,10 +63,20 @@
   transition: opacity 0.2s ease;
   box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
   line-height: 1.4;
-  color: black;          /* текст тултипа чёрный */
+  color: black;
 }
 
 .tooltip:hover::after {
   opacity: 1;
+}
+
+/* Если не помещается справа (у правого края окна) — показываем слева */
+@media (max-width: 768px) {
+  .tooltip::after {
+    left: auto;
+    right: 100%;
+    margin-left: 0;
+    margin-right: 10px;
+  }
 }
 </style>
