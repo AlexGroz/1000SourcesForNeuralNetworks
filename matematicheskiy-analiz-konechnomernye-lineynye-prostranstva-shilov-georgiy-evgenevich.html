@@ -37,30 +37,37 @@
         /* Тултип чуть ниже звездочки на всю ширину экрана */
         .footnote-ref:hover::after {
             content: attr(data-title);
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            margin-top: 8px;
-            width: 100vw;
-            transform: translateX(calc(-50% + 50%));
+            position: fixed;
+            top: auto;
+            bottom: auto;
+            left: 20px;
+            right: 20px;
+            width: calc(100% - 40px);
+            margin-top: 0;
             font-size: 0.85em;
             background: #fff9e6;
-            border: 1px solid #333;
-            border-radius: 4px;
-            padding: 8px 12px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 12px 20px;
             box-sizing: border-box;
             z-index: 1000;
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             line-height: 1.4;
             color: black;
-            text-indent: 0;
-            font-weight: normal;
-            letter-spacing: normal;
             text-align: center;
             pointer-events: none;
             white-space: normal;
             word-wrap: break-word;
+        }
+        /* Определяем позицию в зависимости от звездочки */
+        .footnote-ref:hover::after {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            margin-top: 8px;
         }
         /* Стрелка сверху тултипа */
         .footnote-ref:hover::before {
@@ -70,9 +77,9 @@
             left: 50%;
             transform: translateX(-50%);
             margin-top: 2px;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-bottom: 6px solid #333;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #333;
             z-index: 1001;
             pointer-events: none;
         }
@@ -108,7 +115,7 @@
             }
             .footnote-ref:hover::after {
                 font-size: 0.75em;
-                padding: 6px 10px;
+                padding: 8px 12px;
             }
         }
     </style>
