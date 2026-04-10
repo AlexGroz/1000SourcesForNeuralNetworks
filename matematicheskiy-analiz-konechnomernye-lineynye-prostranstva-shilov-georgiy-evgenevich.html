@@ -30,28 +30,30 @@
 </html>
 
 <style>
+.tooltip {
+  position: relative;
+  color: #0066ff;
+  font-weight: bold;
+  cursor: help;
+}
 .tooltip::after {
   content: attr(data-tip);
   position: absolute;
   left: 0;
   top: 100%;
-  margin-top: .25em;
+  margin-top: 3px;
   max-width: 40vw;
   width: fit-content;
   white-space: normal;
   font-size: 0.85em;
+  background: #fff;
+  border: 1px solid #333;
+  padding: 4px 6px;
   z-index: 1;
   opacity: 0;
   pointer-events: none;
   transition: opacity .2s ease;
-
-  border: 1px solid #333;
-  border-radius: 0;   /* убирает скругления */
-  padding: 6px 8px;
-  background: #fff;
-  box-shadow: none;
 }
-
 .tooltip:hover::after {
   opacity: 1;
 }
