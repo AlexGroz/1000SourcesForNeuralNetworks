@@ -29,54 +29,48 @@
 </body>
 </html>
 
-<style>
-.tooltip {
-  cursor: help;
-  color: blue;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip::after {
-  content: attr(data-tip);
-  position: absolute;
-  left: 100%;        /* появляется справа */
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 10px;
-  min-width: 150px;
-  max-width: 300px;
-  width: max-content;
-  white-space: normal;
-  word-wrap: break-word;
-  font-size: 0.85em;
-  background: #fff9e6;
-  border: 1px solid #333;
-  border-radius: 4px;
-  padding: 8px 12px;
-  box-sizing: border-box;
-  z-index: 100;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
-  line-height: 1.4;
-  color: black;
-}
-
-.tooltip:hover::after {
-  opacity: 1;
-}
-
-/* Если не помещается справа (у правого края окна) — показываем слева */
-@media (max-width: 768px) {
-  .tooltip::after {
-    left: auto;
-    right: 100%;
-    margin-left: 0;
-    margin-right: 10px;
-  }
-}
-</style>
+    <style>
+    .tooltip {
+      cursor: help;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      display: inline;
+    }
+    
+    /* Звёздочка синяя */
+    .tooltip {
+      color: blue;
+    }
+    
+    .tooltip::after {
+      content: attr(data-tip);
+      position: fixed;
+      bottom: auto;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 150px;
+      max-width: 80vw;
+      width: max-content;
+      white-space: normal;
+      word-wrap: break-word;
+      font-size: 0.85em;
+      background: #fff9e6;
+      border: 1px solid #333;
+      border-radius: 4px;
+      padding: 8px 12px;
+      box-sizing: border-box;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+      line-height: 1.4;
+      color: black;
+    }
+    
+    .tooltip:hover::after {
+      opacity: 1;
+    }
+    </style>
