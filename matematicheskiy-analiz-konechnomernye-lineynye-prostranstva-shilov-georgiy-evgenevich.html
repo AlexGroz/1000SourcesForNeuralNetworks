@@ -30,27 +30,38 @@
 </html>
 
 <style>
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
 .tooltip::after {
   content: attr(data-tip);
   position: absolute;
   left: 0;
-  top: 100%;
-  margin-top: 3px;
-  max-width: 40vw;
-  width: auto;              /* подстраивается под текст */
-  aspect-ratio: 1;          /* всегда квадрат */
+  bottom: 100%;  /* появляется сверху от звёздочки */
+  margin-bottom: 8px;
+  min-width: 150px;
+  max-width: 300px;
+  width: max-content;
   white-space: normal;
+  word-wrap: break-word;   /* перенос длинных слов */
   font-size: 0.85em;
-  background: #fff;
-  border: 2px solid #333;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #fff9e6;     /* слегка желтоватый фон как у сноски */
+  border: 1px solid #333;
+  border-radius: 4px;      /* скруглённые углы */
+  padding: 8px 12px;
   box-sizing: border-box;
-  z-index: 1;
+  z-index: 100;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .2s ease;
+  transition: opacity 0.2s ease;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  line-height: 1.4;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
 }
 </style>
