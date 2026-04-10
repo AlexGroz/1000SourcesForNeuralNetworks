@@ -1,20 +1,16 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Глава 1. Определители - Линейная алгебра</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Глава 1. Определители - 1000SourcesForNeuralNetwork</title>
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
         .content {
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             padding: 2rem;
-            margin: 2rem auto;
+            margin-bottom: 2rem;
         }
         .section-number {
             font-weight: 600;
@@ -48,168 +44,186 @@
             margin-top: 1.5rem;
             color: #495057;
         }
-        .math-symbol {
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-        }
         @media (max-width: 768px) {
             .content {
                 padding: 1rem;
-                margin: 0.5rem;
-            }
-            body {
-                margin: 0 !important;
             }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="content">
-            <!-- Хлебные крошки -->
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="books.html">Книги</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Глава 1. Определители</li>
-                </ol>
-            </nav>
+<body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">1000SourcesForNeuralNetwork</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="video.html">Видео</a></li>
+                    <li class="nav-item"><a class="nav-link" href="channels.html">Каналы</a></li>
+                    <li class="nav-item"><a class="nav-link" href="books.html">Книги</a></li>
+                    <li class="nav-item"><a class="nav-link" href="articles.html">Статьи</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-            <!-- Заголовок -->
-            <h1 class="mb-4">Глава 1. Определители</h1>
-            
-            <!-- § 1.1 -->
-            <h2 class="mt-4">§ 1.1 Числовые поля</h2>
-            
-            <div class="indented-text">
-                <span class="section-number">1.1.</span> 
-                Как и бо́льшая часть математики, линейная алгебра использует числовые системы (числовые поля). 
-                <strong>Числовым полем</strong> называют всякую совокупность <em>K</em> объектов, называемых <em>числами</em>, 
-                в которой можно производить с этими объектами четыре арифметических действия. 
-                Перечислим необходимые сведения об этих действиях (<span class="badge bg-secondary">аксиомы поля</span>).
-            </div>
+    <main class="flex-shrink-0">
+        <div class="container mt-4">
+            <div class="content">
+                <!-- Хлебные крошки -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="books.html">Книги</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Глава 1. Определители</li>
+                    </ol>
+                </nav>
 
-            <!-- Аксиомы сложения -->
-            <div class="axiom mt-3">
-                <strong class="text-primary">а.</strong> Каждой паре чисел α и β отвечает число α+β, называемое <em>суммой</em> чисел α и β, причем
-            </div>
-            
-            <div class="indented-text">
-                <span class="section-number">1)</span> α+β = β+α для любых α и β из <em>K</em> 
-                (<span class="badge bg-info text-dark">коммутативность сложения</span>).
-            </div>
-            
-            <div class="indented-text">
-                <span class="section-number">2)</span> (α+β)+γ = α+(β+γ) для любых α, β, γ из <em>K</em> 
-                (<span class="badge bg-info text-dark">ассоциативность сложения</span>).
-            </div>
-            
-            <div class="indented-text">
-                <span class="section-number">3)</span> Существует число <strong>0</strong> (<em>нуль</em>) такое, что 0+α = α для любого α из <em>K</em>.
-            </div>
-            
-            <div class="indented-text">
-                <span class="section-number">4)</span> Для любого α из <em>K</em> существует число β из <em>K</em> такое, что α+β=0 
-                (<em>противоположный элемент</em>).
-            </div>
-            
-            <div class="indented-text mt-2">
-                Разрешимость уравнения α+β = 0 при любом α позволяет ввести операцию вычитания: 
-                <em>разность</em> α−β по определению есть сумма числа α и решения γ уравнения β+γ = 0.
-            </div>
-
-            <!-- Аксиомы умножения -->
-            <div class="axiom mt-3">
-                <strong class="text-primary">б.</strong> Каждой паре чисел α и β отвечает число α⋅β (αβ), называемое <em>произведением</em> чисел α и β, причем
-            </div>
-            
-            <div class="indented-text">
-                <span class="section-number">5)</span> αβ=βα для любых α и β из <em>K</em> 
-                (<span class="badge bg-info text-dark">коммутативность умножения</span>).
-            </div>
-            
-            <div class="indented-text">
-                <span class="section-number">6)</span> (αβ)γ=α(βγ) для любых α,β,γ из <em>K</em> 
-                (<span class="badge bg-info text-dark">ассоциативность умножения</span>).
-            </div>
-            
-            <div class="indented-text">
-                <span class="section-number">7)</span> Существует число <strong>1</strong> (≠0) такое, что 1⋅α=α для любого числа α из <em>K</em>.
-            </div>
-            
-            <div class="indented-text">
-                <span class="section-number">8)</span> Для любого α≠0 существует число γ из <em>K</em> такое, что αγ=1 
-                (<em>обратный элемент</em>).
-            </div>
-            
-            <div class="indented-text mt-2">
-                Разрешимость уравнения αγ=1 при любом α≠0 позволяет ввести операцию деления на число α≠0: 
-                <em>частное</em> β/α есть произведение числа β и решения γ уравнения αγ=1.
-            </div>
-
-            <!-- Сноска с помощью Bootstrap Tooltip -->
-            <div class="indented-text">
-                Числа 1+1=2, 2+1=3 и т. д. называются <em>натуральными</em>; предполагается, что ни одно из них не равно 0
-                <a href="#" class="footnote-ref" data-bs-toggle="tooltip" 
-                   title="Из двух элементов, положим N и E, можно устроить поле по правилам N+N=N, N+E=E, E+E=N, N⋅N=N, N⋅E=N, E⋅E=E. В соответствии с нашими обозначениями мы должны положить N=0, E=1, и тогда 2=1+1=0. Для исключения таких числовых систем мы и требуем, чтобы все натуральные элементы поля были бы отличными от 0.">
-                   [*]
-                </a>.
-            </div>
-            
-            <div class="indented-text">
-                Натуральные числа, им противоположные и 0 образуют, по определению, <em>совокупность целых чисел</em> поля <em>K</em>. 
-                Частные <em>p/q</em>, где <em>p</em> и <em>q</em>—целые и q≠0, образуют 
-                <em>совокупность рациональных чисел</em> поля <em>K</em>.
-            </div>
-            
-            <div class="indented-text">
-                Два поля <em>K</em> и <em>K′</em> называются <em>изоморфными</em>, если между ними можно так установить взаимно однозначное соответствие, 
-                что сумма и произведение чисел поля <em>K</em> соответствуют сумме и произведению соответствующих чисел поля <em>K′</em>. 
-                (В этом случае результаты остальных операций—разности и частного—также будут соответствовать друг другу.)
-            </div>
-
-            <!-- Примеры полей -->
-            <div class="indented-text mt-3">
-                <span class="section-number">1.12.</span> Наиболее часто встречаются следующие примеры конкретных числовых полей.
-            </div>
-            
-            <div class="indented-text">
-                <strong>а.</strong> <em>Поле рациональных чисел</em>, т. е. отношений <em>p/q</em>, где <em>p</em> и <em>q</em> ≠0 — обычные целые числа с обычными арифметическими правилами действий. 
-                <div class="alert alert-warning mt-2">
-                    <strong>Замечание:</strong> одни только <em>целые числа не образуют числового поля</em>, так как в этом случае не выполнена аксиома 8).
+                <!-- Заголовок -->
+                <h1 class="mb-4">Глава 1. Определители</h1>
+                
+                <!-- § 1.1 -->
+                <h2 class="mt-4">§ 1.1 Числовые поля</h2>
+                
+                <div class="indented-text">
+                    <span class="section-number">1.1.</span> 
+                    Как и бо́льшая часть математики, линейная алгебра использует числовые системы (числовые поля). 
+                    <strong>Числовым полем</strong> называют всякую совокупность <em>K</em> объектов, называемых <em>числами</em>, 
+                    в которой можно производить с этими объектами четыре арифметических действия. 
+                    Перечислим необходимые сведения об этих действиях (<span class="badge bg-secondary">аксиомы поля</span>).
                 </div>
-            </div>
-            
-            <div class="indented-text">
-                Из сказанного выше следует, что в каждом поле <em>K</em> имеется часть (подполе), изоморфная полю рациональных чисел.
-            </div>
-            
-            <div class="indented-text">
-                <strong>б.</strong> <em>Поле вещественных чисел</em>, имеющее геометрическим образом совокупность всех точек прямой. 
-                Аксиоматика поля вещественных чисел получается добавлением к аксиомам 1)—8) аксиомы порядка и аксиомы о точной верхней грани
-                <a href="#" class="footnote-ref" data-bs-toggle="tooltip" 
-                   title="Теория вещественных чисел подробно излагается в нашей книге «Математический анализ (Функции одного переменного)», «Наука», 1969, гл. I. В дальнейшем обозначаем эту книгу через ФОП.">
-                   [**]
-                </a>.
-            </div>
-            
-            <div class="indented-text">
-                <strong>в.</strong> <em>Поле комплексных чисел a+ib</em>, где <em>a</em> и <em>b</em> вещественны (символ <em>i</em> не есть вещественное число), с правилами:
-                <div class="bg-light p-3 rounded mt-2 text-center">
-                    <code>(a+ib) + (c+id) = (a+c) + i(b+d)</code><br>
-                    <code>(a+ib) ⋅ (c+id) = (ac-bd) + i(ad+bc)</code>
-                </div>
-            </div>
 
-            <!-- Навигация по главе -->
-            <div class="mt-5 pt-3 border-top">
-                <div class="d-flex justify-content-between">
-                    <a href="#" class="btn btn-outline-primary">← Предыдущая глава</a>
-                    <a href="#" class="btn btn-outline-primary">Следующая глава →</a>
+                <!-- Аксиомы сложения -->
+                <div class="axiom mt-3">
+                    <strong class="text-primary">а.</strong> Каждой паре чисел α и β отвечает число α+β, называемое <em>суммой</em> чисел α и β, причем
+                </div>
+                
+                <div class="indented-text">
+                    <span class="section-number">1)</span> α+β = β+α для любых α и β из <em>K</em> 
+                    (<span class="badge bg-info text-dark">коммутативность сложения</span>).
+                </div>
+                
+                <div class="indented-text">
+                    <span class="section-number">2)</span> (α+β)+γ = α+(β+γ) для любых α, β, γ из <em>K</em> 
+                    (<span class="badge bg-info text-dark">ассоциативность сложения</span>).
+                </div>
+                
+                <div class="indented-text">
+                    <span class="section-number">3)</span> Существует число <strong>0</strong> (<em>нуль</em>) такое, что 0+α = α для любого α из <em>K</em>.
+                </div>
+                
+                <div class="indented-text">
+                    <span class="section-number">4)</span> Для любого α из <em>K</em> существует число β из <em>K</em> такое, что α+β=0 
+                    (<em>противоположный элемент</em>).
+                </div>
+                
+                <div class="indented-text mt-2">
+                    Разрешимость уравнения α+β = 0 при любом α позволяет ввести операцию вычитания: 
+                    <em>разность</em> α−β по определению есть сумма числа α и решения γ уравнения β+γ = 0.
+                </div>
+
+                <!-- Аксиомы умножения -->
+                <div class="axiom mt-3">
+                    <strong class="text-primary">б.</strong> Каждой паре чисел α и β отвечает число α⋅β (αβ), называемое <em>произведением</em> чисел α и β, причем
+                </div>
+                
+                <div class="indented-text">
+                    <span class="section-number">5)</span> αβ=βα для любых α и β из <em>K</em> 
+                    (<span class="badge bg-info text-dark">коммутативность умножения</span>).
+                </div>
+                
+                <div class="indented-text">
+                    <span class="section-number">6)</span> (αβ)γ=α(βγ) для любых α,β,γ из <em>K</em> 
+                    (<span class="badge bg-info text-dark">ассоциативность умножения</span>).
+                </div>
+                
+                <div class="indented-text">
+                    <span class="section-number">7)</span> Существует число <strong>1</strong> (≠0) такое, что 1⋅α=α для любого числа α из <em>K</em>.
+                </div>
+                
+                <div class="indented-text">
+                    <span class="section-number">8)</span> Для любого α≠0 существует число γ из <em>K</em> такое, что αγ=1 
+                    (<em>обратный элемент</em>).
+                </div>
+                
+                <div class="indented-text mt-2">
+                    Разрешимость уравнения αγ=1 при любом α≠0 позволяет ввести операцию деления на число α≠0: 
+                    <em>частное</em> β/α есть произведение числа β и решения γ уравнения αγ=1.
+                </div>
+
+                <!-- Сноска -->
+                <div class="indented-text">
+                    Числа 1+1=2, 2+1=3 и т. д. называются <em>натуральными</em>; предполагается, что ни одно из них не равно 0
+                    <a href="#" class="footnote-ref" data-bs-toggle="tooltip" 
+                       title="Из двух элементов, положим N и E, можно устроить поле по правилам N+N=N, N+E=E, E+E=N, N⋅N=N, N⋅E=N, E⋅E=E. В соответствии с нашими обозначениями мы должны положить N=0, E=1, и тогда 2=1+1=0. Для исключения таких числовых систем мы и требуем, чтобы все натуральные элементы поля были бы отличными от 0.">
+                       [*]
+                    </a>.
+                </div>
+                
+                <div class="indented-text">
+                    Натуральные числа, им противоположные и 0 образуют, по определению, <em>совокупность целых чисел</em> поля <em>K</em>. 
+                    Частные <em>p/q</em>, где <em>p</em> и <em>q</em>—целые и q≠0, образуют 
+                    <em>совокупность рациональных чисел</em> поля <em>K</em>.
+                </div>
+                
+                <div class="indented-text">
+                    Два поля <em>K</em> и <em>K′</em> называются <em>изоморфными</em>, если между ними можно так установить взаимно однозначное соответствие, 
+                    что сумма и произведение чисел поля <em>K</em> соответствуют сумме и произведению соответствующих чисел поля <em>K′</em>. 
+                    (В этом случае результаты остальных операций—разности и частного—также будут соответствовать друг другу.)
+                </div>
+
+                <!-- Примеры полей -->
+                <div class="indented-text mt-3">
+                    <span class="section-number">1.12.</span> Наиболее часто встречаются следующие примеры конкретных числовых полей.
+                </div>
+                
+                <div class="indented-text">
+                    <strong>а.</strong> <em>Поле рациональных чисел</em>, т. е. отношений <em>p/q</em>, где <em>p</em> и <em>q</em> ≠0 — обычные целые числа с обычными арифметическими правилами действий. 
+                    <div class="alert alert-warning mt-2">
+                        <strong>Замечание:</strong> одни только <em>целые числа не образуют числового поля</em>, так как в этом случае не выполнена аксиома 8).
+                    </div>
+                </div>
+                
+                <div class="indented-text">
+                    Из сказанного выше следует, что в каждом поле <em>K</em> имеется часть (подполе), изоморфная полю рациональных чисел.
+                </div>
+                
+                <div class="indented-text">
+                    <strong>б.</strong> <em>Поле вещественных чисел</em>, имеющее геометрическим образом совокупность всех точек прямой. 
+                    Аксиоматика поля вещественных чисел получается добавлением к аксиомам 1)—8) аксиомы порядка и аксиомы о точной верхней грани
+                    <a href="#" class="footnote-ref" data-bs-toggle="tooltip" 
+                       title="Теория вещественных чисел подробно излагается в нашей книге «Математический анализ (Функции одного переменного)», «Наука», 1969, гл. I. В дальнейшем обозначаем эту книгу через ФОП.">
+                       [**]
+                    </a>.
+                </div>
+                
+                <div class="indented-text">
+                    <strong>в.</strong> <em>Поле комплексных чисел a+ib</em>, где <em>a</em> и <em>b</em> вещественны (символ <em>i</em> не есть вещественное число), с правилами:
+                    <div class="bg-light p-3 rounded mt-2 text-center">
+                        <code>(a+ib) + (c+id) = (a+c) + i(b+d)</code><br>
+                        <code>(a+ib) ⋅ (c+id) = (ac-bd) + i(ad+bc)</code>
+                    </div>
+                </div>
+
+                <!-- Навигация по главе -->
+                <div class="mt-5 pt-3 border-top">
+                    <div class="d-flex justify-content-between">
+                        <a href="#" class="btn btn-outline-primary">← Предыдущая глава</a>
+                        <a href="books.html" class="btn btn-outline-secondary">Вернуться к книгам</a>
+                        <a href="#" class="btn btn-outline-primary">Следующая глава →</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
+    <footer class="footer mt-auto py-3 bg-light">
+        <div class="container text-center">
+            <p class="mb-0">© 2026 1000 Sources For Neural Network</p>
+        </div>
+    </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Инициализация тултипов Bootstrap
