@@ -34,27 +34,24 @@
             padding: 0;
             position: relative;
         }
-        /* Тултип СНИЗУ */
+        /* Тултип по центру экрана на всю ширину */
         .footnote-ref:hover::after {
             content: attr(data-title);
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 8px;
-            min-width: 150px;
-            max-width: 300px;
-            width: max-content;
-            white-space: normal;
-            word-wrap: break-word;
-            font-size: 0.85em;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            width: auto;
+            max-width: none;
+            margin: 0;
+            font-size: 0.9em;
             background: #fff9e6;
-            border: 1px solid #333;
-            border-radius: 4px;
-            padding: 8px 12px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            padding: 12px 20px;
             box-sizing: border-box;
             z-index: 1000;
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             line-height: 1.4;
             color: black;
             text-indent: 0;
@@ -62,20 +59,12 @@
             letter-spacing: normal;
             text-align: center;
             pointer-events: none;
+            white-space: normal;
+            word-wrap: break-word;
         }
-        /* Стрелка СВЕРХУ тултипа (указывает на звездочку) */
+        /* Убираем стрелку */
         .footnote-ref:hover::before {
-            content: '';
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            margin-top: 2px;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-            border-bottom: 6px solid #333;
-            z-index: 1001;
-            pointer-events: none;
+            display: none;
         }
         .indented-text {
             text-indent: 1.5em;
@@ -108,10 +97,11 @@
                 padding: 1rem;
             }
             .footnote-ref:hover::after {
-                left: 50%;
-                transform: translateX(-50%);
-                min-width: 120px;
-                max-width: 250px;
+                bottom: 10px;
+                left: 10px;
+                right: 10px;
+                padding: 10px 15px;
+                font-size: 0.85em;
             }
         }
     </style>
