@@ -48,6 +48,16 @@
         .term {
             font-style: italic;
         }
+        /* Стиль для аксиом и подобных слов - без фона, с разреженными буквами */
+        .axiom-word {
+            letter-spacing: 0.15em;
+            font-size: 1rem;
+            font-weight: normal;
+            background: none;
+            padding: 0;
+            margin: 0;
+            display: inline;
+        }
         @media (max-width: 768px) {
             .content {
                 padding: 1rem;
@@ -95,7 +105,7 @@
                     Как и бо́льшая часть математики, линейная алгебра использует числовые системы (числовые поля). 
                     <em class="term">Числовым полем</em> называют всякую совокупность <em>K</em> объектов, называемых <em>числами</em>, 
                     в которой можно производить с этими объектами четыре арифметических действия. 
-                    Перечислим необходимые сведения об этих действиях (<span class="badge bg-secondary">аксиомы поля</span>).
+                    Перечислим необходимые сведения об этих действиях (<span class="axiom-word">аксиомы поля</span>).
                 </div>
 
                 <!-- Аксиомы сложения -->
@@ -105,12 +115,12 @@
                 
                 <div class="indented-text">
                     <span class="section-number">1)</span> α+β = β+α для любых α и β из <em>K</em> 
-                    (<span class="badge bg-info text-dark">коммутативность сложения</span>).
+                    (<span class="axiom-word">коммутативность сложения</span>).
                 </div>
                 
                 <div class="indented-text">
                     <span class="section-number">2)</span> (α+β)+γ = α+(β+γ) для любых α, β, γ из <em>K</em> 
-                    (<span class="badge bg-info text-dark">ассоциативность сложения</span>).
+                    (<span class="axiom-word">ассоциативность сложения</span>).
                 </div>
                 
                 <div class="indented-text">
@@ -133,12 +143,12 @@
                 
                 <div class="indented-text">
                     <span class="section-number">5)</span> αβ=βα для любых α и β из <em>K</em> 
-                    (<span class="badge bg-info text-dark">коммутативность умножения</span>).
+                    (<span class="axiom-word">коммутативность умножения</span>).
                 </div>
                 
                 <div class="indented-text">
                     <span class="section-number">6)</span> (αβ)γ=α(βγ) для любых α,β,γ из <em>K</em> 
-                    (<span class="badge bg-info text-dark">ассоциативность умножения</span>).
+                    (<span class="axiom-word">ассоциативность умножения</span>).
                 </div>
                 
                 <div class="indented-text">
