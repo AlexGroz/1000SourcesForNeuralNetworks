@@ -32,46 +32,49 @@
             position: relative;
             display: inline-block;
         }
-        /* Кастомный тултип */
-        .custom-tooltip {
+        /* Тултип только на CSS */
+        .footnote-ref:hover::after {
+            content: attr(data-title);
             position: absolute;
-            background: #fff9e6;
-            border: 1px solid #333;
-            border-radius: 4px;
-            padding: 8px 12px;
-            font-size: 0.85em;
-            line-height: 1.4;
-            color: black;
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
-            z-index: 1000;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-bottom: 8px;
+            min-width: 150px;
             max-width: 300px;
             width: max-content;
             white-space: normal;
             word-wrap: break-word;
-            display: none;
-            pointer-events: none;
+            font-size: 0.85em;
+            background: #fff9e6;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 8px 12px;
+            box-sizing: border-box;
+            z-index: 1000;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+            line-height: 1.4;
+            color: black;
+            text-indent: 0;
+            font-weight: normal;
+            letter-spacing: normal;
         }
-        .custom-tooltip::before {
+        /* Стрелка снизу тултипа */
+        .footnote-ref:hover::before {
             content: '';
             position: absolute;
-            width: 0;
-            height: 0;
-            border-left: 6px solid transparent;
-            border-right: 6px solid transparent;
-        }
-        /* Стрелка вверх (когда тултип снизу) */
-        .custom-tooltip.bottom::before {
             bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
-            border-bottom: 6px solid #333;
-        }
-        /* Стрелка вниз (когда тултип сверху) */
-        .custom-tooltip.top::before {
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-bottom: 2px;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
             border-top: 6px solid #333;
+            z-index: 1001;
+        }
+        /* Если тултип уходит за правый край - сдвигаем */
+        .footnote-ref {
+            white-space: nowrap;
         }
         .indented-text {
             text-indent: 1.5em;
@@ -211,7 +214,7 @@
                 <!-- Сноска 1 -->
                 <div class="indented-text">
                     Числа 1+1=2, 2+1=3 и т. д. называются <em>натуральными</em>; предполагается, что ни одно из них не равно 0
-                    <a href="#" class="footnote-ref" data-tooltip="Из двух элементов, положим N и E, можно устроить поле по правилам N+N=N, N+E=E, E+E=N, N⋅N=N, N⋅E=N, E⋅E=E. В соответствии с нашими обозначениями мы должны положить N=0, E=1, и тогда 2=1+1=0. Для исключения таких числовых систем мы и требуем, чтобы все натуральные элементы поля были бы отличными от 0.">
+                    <a href="#" class="footnote-ref" data-title="Из двух элементов, положим N и E, можно устроить поле по правилам N+N=N, N+E=E, E+E=N, N⋅N=N, N⋅E=N, E⋅E=E. В соответствии с нашими обозначениями мы должны положить N=0, E=1, и тогда 2=1+1=0. Для исключения таких числовых систем мы и требуем, чтобы все натуральные элементы поля были бы отличными от 0.">
                        [*]
                     </a>.
                 </div>
@@ -247,7 +250,7 @@
                 <div class="indented-text">
                     <strong>б.</strong> <em>Поле вещественных чисел</em>, имеющее геометрическим образом совокупность всех точек прямой. 
                     Аксиоматика поля вещественных чисел получается добавлением к аксиомам 1)—8) аксиомы порядка и аксиомы о точной верхней грани
-                    <a href="#" class="footnote-ref" data-tooltip="Теория вещественных чисел подробно излагается в нашей книге «Математический анализ (Функции одного переменного)», «Наука», 1969, гл. I. В дальнейшем обозначаем эту книгу через ФОП.">
+                    <a href="#" class="footnote-ref" data-title="Теория вещественных чисел подробно излагается в нашей книге «Математический анализ (Функции одного переменного)», «Наука», 1969, гл. I. В дальнейшем обозначаем эту книгу через ФОП.">
                        [**]
                     </a>.
                 </div>
@@ -277,109 +280,5 @@
             <p class="mb-0">© 2026 1000 Sources For Neural Network</p>
         </div>
     </footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Кастомные тултипы
-        (function() {
-            // Создаём элемент тултипа
-            const tooltip = document.createElement('div');
-            tooltip.className = 'custom-tooltip';
-            document.body.appendChild(tooltip);
-            
-            let currentTarget = null;
-            
-            function showTooltip(target, text) {
-                const rect = target.getBoundingClientRect();
-                const tooltipRect = tooltip.getBoundingClientRect();
-                
-                tooltip.textContent = text;
-                tooltip.style.display = 'block';
-                
-                // Получаем актуальные размеры после вставки текста
-                const actualTooltipRect = tooltip.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                const viewportWidth = window.innerWidth;
-                
-                // Проверяем, есть ли место снизу
-                const spaceBelow = viewportHeight - rect.bottom;
-                const spaceAbove = rect.top;
-                
-                let position = 'bottom';
-                let top, left;
-                
-                if (spaceBelow >= actualTooltipRect.height + 10) {
-                    // Показываем снизу
-                    position = 'bottom';
-                    top = rect.bottom + 8;
-                } else if (spaceAbove >= actualTooltipRect.height + 10) {
-                    // Показываем сверху
-                    position = 'top';
-                    top = rect.top - actualTooltipRect.height - 8;
-                } else {
-                    // Если нет места ни сверху, ни снизу - показываем снизу с приоритетом
-                    position = 'bottom';
-                    top = rect.bottom + 8;
-                }
-                
-                // Горизонтальное позиционирование
-                left = rect.left + (rect.width / 2) - (actualTooltipRect.width / 2);
-                
-                // Не выходим за левый край
-                if (left < 10) {
-                    left = 10;
-                }
-                // Не выходим за правый край
-                if (left + actualTooltipRect.width > viewportWidth - 10) {
-                    left = viewportWidth - actualTooltipRect.width - 10;
-                }
-                
-                tooltip.style.top = top + 'px';
-                tooltip.style.left = left + 'px';
-                
-                // Устанавливаем класс для стрелки
-                tooltip.classList.remove('bottom', 'top');
-                tooltip.classList.add(position);
-            }
-            
-            function hideTooltip() {
-                tooltip.style.display = 'none';
-                currentTarget = null;
-            }
-            
-            // Навешиваем обработчики на все сноски
-            const refs = document.querySelectorAll('.footnote-ref');
-            refs.forEach(ref => {
-                ref.addEventListener('mouseenter', function(e) {
-                    const text = this.getAttribute('data-tooltip');
-                    if (text) {
-                        currentTarget = this;
-                        showTooltip(this, text);
-                    }
-                });
-                
-                ref.addEventListener('mouseleave', hideTooltip);
-                
-                // Для touch-устройств
-                ref.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    if (currentTarget === this && tooltip.style.display === 'block') {
-                        hideTooltip();
-                    } else {
-                        if (currentTarget) hideTooltip();
-                        const text = this.getAttribute('data-tooltip');
-                        if (text) {
-                            currentTarget = this;
-                            showTooltip(this, text);
-                        }
-                    }
-                });
-            });
-            
-            // Скрываем при скролле или ресайзе
-            window.addEventListener('scroll', hideTooltip);
-            window.addEventListener('resize', hideTooltip);
-        })();
-    </script>
 </body>
 </html>
