@@ -32,22 +32,11 @@
 <style>
 .tooltip {
   cursor: help;
-  color: blue;           /* возвращаем синий цвет звёздочке */
-  text-decoration: none;
+  color: blue;           /* любой текст внутри span будет синим */
   margin: 0;
   padding: 0;
   position: relative;
-  display: inline;       /* чтобы не было лишних отступов */
-}
-
-.tooltip::before {
-  content: "*";
-  color: blue;
-}
-
-/* Убираем старую звёздочку, если она была в тексте */
-.tooltip {
-  font-size: 1em;
+  display: inline;
 }
 
 .tooltip::after {
