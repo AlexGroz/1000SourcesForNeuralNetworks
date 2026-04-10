@@ -29,29 +29,24 @@
 </body>
 </html>
 
-    <style>
+       <style>
     .tooltip {
       cursor: help;
+      color: blue;
       margin: 0;
       padding: 0;
       position: relative;
       display: inline;
     }
     
-    /* Звёздочка синяя */
-    .tooltip {
-      color: blue;
-    }
-    
     .tooltip::after {
       content: attr(data-tip);
-      position: fixed;
-      bottom: auto;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: absolute;
+      left: 0;
+      top: 100%;
+      margin-top: 5px;
       min-width: 150px;
-      max-width: 80vw;
+      max-width: 250px;
       width: max-content;
       white-space: normal;
       word-wrap: break-word;
@@ -64,13 +59,23 @@
       z-index: 1000;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.2s ease;
-      box-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+      transition: opacity 0.15s ease;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
       line-height: 1.4;
       color: black;
     }
     
     .tooltip:hover::after {
       opacity: 1;
+    }
+    
+    /* Если подсказка уходит за правый край - сдвигаем влево */
+    .tooltip {
+      white-space: nowrap;
+    }
+    
+    .tooltip:hover::after {
+      left: auto;
+      right: 0;
     }
     </style>
