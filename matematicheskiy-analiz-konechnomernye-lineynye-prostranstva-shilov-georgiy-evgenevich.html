@@ -34,15 +34,14 @@
             padding: 0;
             position: relative;
         }
-        /* Тултип на всю ширину, но в пределах экрана */
+        /* Тултип шириной 80% от экрана */
         .footnote-ref:hover::after {
             content: attr(data-title);
             position: absolute;
             top: 100%;
-            left: 0;
-            right: 0;
-            width: 100vw;
-            margin-left: calc(-50vw + 50%);
+            left: 10%;
+            right: 10%;
+            width: 80%;
             margin-top: 8px;
             font-size: 0.85em;
             background: #fff9e6;
@@ -61,7 +60,6 @@
             pointer-events: none;
             white-space: normal;
             word-wrap: break-word;
-            overflow-x: hidden;
         }
         /* Стрелка сверху тултипа */
         .footnote-ref:hover::before {
@@ -110,6 +108,9 @@
             .footnote-ref:hover::after {
                 font-size: 0.75em;
                 padding: 6px 10px;
+                left: 5%;
+                right: 5%;
+                width: 90%;
             }
         }
     </style>
