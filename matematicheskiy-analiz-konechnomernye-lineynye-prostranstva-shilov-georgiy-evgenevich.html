@@ -34,24 +34,24 @@
             padding: 0;
             position: relative;
         }
-        /* Тултип по центру экрана на всю ширину */
+        /* Тултип прямо под звездочкой на всю ширину */
         .footnote-ref:hover::after {
             content: attr(data-title);
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            width: auto;
+            position: absolute;
+            top: 100%;
+            left: -200px;
+            right: -200px;
+            margin-top: 8px;
+            width: calc(100vw - 40px);
             max-width: none;
-            margin: 0;
-            font-size: 0.9em;
+            font-size: 0.85em;
             background: #fff9e6;
-            border: 2px solid #333;
-            border-radius: 8px;
-            padding: 12px 20px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 8px 12px;
             box-sizing: border-box;
             z-index: 1000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
             line-height: 1.4;
             color: black;
             text-indent: 0;
@@ -62,9 +62,19 @@
             white-space: normal;
             word-wrap: break-word;
         }
-        /* Убираем стрелку */
+        /* Стрелка сверху тултипа */
         .footnote-ref:hover::before {
-            display: none;
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 2px;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid #333;
+            z-index: 1001;
+            pointer-events: none;
         }
         .indented-text {
             text-indent: 1.5em;
@@ -97,11 +107,9 @@
                 padding: 1rem;
             }
             .footnote-ref:hover::after {
-                bottom: 10px;
-                left: 10px;
-                right: 10px;
-                padding: 10px 15px;
-                font-size: 0.85em;
+                left: -100px;
+                right: -100px;
+                width: calc(100vw - 20px);
             }
         }
     </style>
