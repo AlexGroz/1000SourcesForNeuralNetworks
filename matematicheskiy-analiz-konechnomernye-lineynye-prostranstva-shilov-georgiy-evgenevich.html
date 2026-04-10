@@ -32,19 +32,11 @@
 </html>
 
 <style>
-.tooltip { 
-  position: relative; 
-  cursor: help; 
-  color: #0066ff;
-  font-weight: bold;
-}
-
-/* скрытая подсказка */
 .tooltip::after {
   content: attr(data-tip);
   position: absolute;
   left: 0;
-  bottom: 1.2em;
+  bottom: 100%;          /* сначала пробуем над элементом */
   max-width: 40vw;
   width: fit-content;
   white-space: normal;
@@ -58,8 +50,27 @@
   transition: opacity .2s ease;
 }
 
-/* показываем при наведении */
-.tooltip:hover::after {
-  opacity: 1;
+/* если сверху не хватает места, рисуем СНИЗУ */
+@supports (top: max(0px)) {
+  .tooltip::after {
+    top: auto;
+    bottom: auto;
+    top: max(-100vh, -100%); /* запас по высоте viewport */
+  }
+  .tooltip:hover::after {
+    top: auto;
+    bottom: auto;
+    /* если верхняя граница tooltip за пределами окна – ставим снизу */
+    top: 100%;
+    margin-top: .3em;   /* небольшой отступ от звёздочки */
+  }
+}
+Более простое и кросс-браузерное решение — всегда показывать подсказку ниже звёздочки:
+
+Copy.tooltip::after {
+  top: 100%;        /* строго под элементом */
+  left: 0;
+  margin-top: .3em; /* небольшой отступ */
+  /* остальные свойства без изменений */
 }
 </style>
