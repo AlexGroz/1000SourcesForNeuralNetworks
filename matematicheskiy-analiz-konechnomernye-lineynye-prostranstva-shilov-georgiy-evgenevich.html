@@ -50,4 +50,18 @@
   font-size: 0.85em;
   z-index: 1;
 }
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 0;
+  bottom: 1.2em;
+  max-width: 40vw;        /* не больше 40 % ширины окна */
+  width: fit-content;      /* ровно по длине текста, но не выше max-width */
+  white-space: normal;     /* разрешаем перенос слов */
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 4px 6px;
+  font-size: 0.85em;
+  z-index: 1;
+}
 </style>
